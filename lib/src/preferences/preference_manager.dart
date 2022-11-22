@@ -20,29 +20,6 @@ class PreferenceManager {
     _prefs.clear();
   }
 
-  /// ------------------( IS LOGIN )------------------
-  // Future<bool> getIsLogin() async {
-  //   _prefs = await SharedPreferences.getInstance();
-  //   return _prefs.getBool(PreferenceConstants.isLogin) ?? false;
-  // }
-
-  // Future<void> setIsLogin(bool isLogin) async {
-  //   _prefs = await SharedPreferences.getInstance();
-  //   _prefs.setBool(PreferenceConstants.isLogin, isLogin);
-  // }
-
-  /// ------------------( IS BASIC USER DATA FILLED )------------------
-  // Future<bool> getBasicUserDataFilled() async {
-  //   _prefs = await SharedPreferences.getInstance();
-  //   return _prefs.getBool(PreferenceConstants.isBasicUserDataFilled) ?? false;
-  // }
-
-  // Future<void> setBasicUserDataFilled(bool isBasicUserDataFilled) async {
-  //   _prefs = await SharedPreferences.getInstance();
-  //   _prefs.setBool(
-  //       PreferenceConstants.isBasicUserDataFilled, isBasicUserDataFilled);
-  // }
-
   /// ------------------( MOBILE NUMBER )------------------
   Future<String> getMobileNumber() async {
     _prefs = await SharedPreferences.getInstance();

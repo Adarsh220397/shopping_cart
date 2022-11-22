@@ -1,16 +1,11 @@
-import 'dart:convert';
 import 'dart:io';
 import 'package:flutter/material.dart';
-
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shopping_app/src/preferences/preference_manager.dart';
 import 'package:shopping_app/src/screens/home_screen.dart';
-
-import 'package:shopping_app/src/services/model/user_details.dart';
 import 'package:shopping_app/src/utils/button_widget.dart';
 import 'package:shopping_app/src/utils/common_utils.dart';
-
 import '../utils/progress_view.dart';
 import 'login_screen.dart';
 
@@ -141,12 +136,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
         CommonUtils.instance
             .showSnackBar(context, 'Signed Up Successfully !', "P");
-        // if (status) {
-        //   CommonUtils.instance
-        //       .showSnackBar(context, 'Signed Up Successfully !', "P");
-        // } else {
-        //   CommonUtils.instance.showSnackBar(context, " Please try again.", "N");
-        // }
+
         Navigator.pushAndRemoveUntil(
             context,
             MaterialPageRoute(builder: (context) => HomeScreen()),
@@ -192,8 +182,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         TextButton(
           onPressed: () {
-            //  PreferenceManager.instance.clearAll();
-
             Navigator.pushReplacement(context,
                 MaterialPageRoute(builder: (context) => const LogInScreen()));
           },

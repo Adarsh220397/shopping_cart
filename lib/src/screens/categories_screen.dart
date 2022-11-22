@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/image.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:shopping_app/src/screens/cart_screen.dart';
 import 'package:shopping_app/src/services/database/database.dart';
@@ -20,10 +19,6 @@ class _LoginDetailsState extends State<LoginDetails> {
   late ThemeData themeData;
   bool isLoading = false;
   List<UserDetailsModel> list = [];
-  // List<UserModel> todayLoginList = [];
-  // List<UserModel> yesterdayLoggedList = [];
-  // List<UserModel> otherList = [];
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   List<UserDetailsModel> selectedList = [];
   List<UserDetailsModel> notSelectedList = [];
 
@@ -47,27 +42,12 @@ class _LoginDetailsState extends State<LoginDetails> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Categories'),
+          title: const Text('Categories'),
           backgroundColor: const Color.fromARGB(255, 1, 16, 39),
           actions: [
             _shoppingCartBadge(),
-            // IconButton(
-            //   icon: const Icon(
-            //     Icons.shopping_cart,
-            //     color: Colors.white,
-            //   ),
-            //   onPressed: () {
-            //     Navigator.pushReplacement(
-            //         context,
-            //         MaterialPageRoute(
-            //             builder: (context) => CartScreen(
-            //                   selectedList: selectedList,
-            //                 )));
-            //   },
-            // )
           ],
         ),
-        //  key: _scaffoldKey,
         body: SafeArea(
           child: KeyboardDismissOnTap(
             child: ProgressWidget(
@@ -82,14 +62,14 @@ class _LoginDetailsState extends State<LoginDetails> {
   Widget _shoppingCartBadge() {
     return Badge(
       position: BadgePosition.topEnd(top: 0, end: 3),
-      animationDuration: Duration(milliseconds: 300),
+      animationDuration: const Duration(milliseconds: 300),
       animationType: BadgeAnimationType.slide,
       badgeContent: Text(
         selectedList.length.toString(),
-        style: TextStyle(color: Colors.white),
+        style: const TextStyle(color: Colors.white),
       ),
       child: IconButton(
-          icon: Icon(Icons.shopping_cart),
+          icon: const Icon(Icons.shopping_cart),
           onPressed: () async {
             await Navigator.pushReplacement(
                 context,
@@ -111,7 +91,7 @@ class _LoginDetailsState extends State<LoginDetails> {
               children: [
                 category('Electronics'),
                 detailsCardRow(0, 2),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 category('Sports'),
@@ -121,7 +101,7 @@ class _LoginDetailsState extends State<LoginDetails> {
                 ),
                 category('Fashion'),
                 detailsCardRow(4, 6),
-                SizedBox(
+                const SizedBox(
                   height: 5,
                 ),
                 category('Grocery'),
@@ -214,40 +194,7 @@ class _LoginDetailsState extends State<LoginDetails> {
     );
   }
 
-  // Widget iconButton(UserDetailsModel user) {
-  //   return IconButton(
-  //       icon: Icon(
-  //         Icons.add,
-  //         color: user.status ? Colors.white : Colors.black,
-  //       ),
-  //       onPressed: () {} //() => onPress(user),
-  //       );
-  // }
-
-  // onPress(UserDetailsModel user) async {
-  //   bool bPress = false;
-  //   if (bPress) {
-  //     user.status = '0';
-  //     bPress = false;
-  //   } else {
-  //     user.status = '1';
-  //     bPress = true;
-
-  //     selectedList.add(user);
-  //   }
-
-  //   print(user.status);
-
-  //   setState(() {});
-  // }
-
   Widget image(UserDetailsModel user) {
-    // var image = decodeImage(File(user.image).readAsBytesSync())!;
-
-    // File('thumbnail.jpg').writeAsBytesSync(encodeJpg(image));
-
-    //  ByteData bytes = await rootBundle.load(user.image);
-
     return Image.network('http://139.59.22.213:3005/${user.image}',
         height: 50, width: MediaQuery.of(context).size.width / 2);
   }

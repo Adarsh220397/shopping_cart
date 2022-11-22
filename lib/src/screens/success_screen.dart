@@ -19,7 +19,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Payment Status'),
+          title: const Text('Payment Status'),
           backgroundColor: const Color.fromARGB(255, 1, 16, 39),
         ),
         //  key: _scaffoldKey,
@@ -39,7 +39,7 @@ class _SuccessScreenState extends State<SuccessScreen> {
       child: Card(
         child: Container(
             width: MediaQuery.of(context).size.width,
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [

@@ -1,10 +1,8 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:shopping_app/src/screens/login_details_screen.dart';
+import 'package:shopping_app/src/screens/categories_screen.dart';
 import 'package:shopping_app/src/screens/mobile_number_screen.dart';
 import 'package:shopping_app/src/services/auth/auth.dart';
 import 'package:shopping_app/src/services/model/user_details.dart';
@@ -33,8 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-
-    _fetchData();
   }
 
   void setLoadingState(bool status) {
@@ -44,22 +40,6 @@ class _HomeScreenState extends State<HomeScreen> {
       });
     }
   }
-
-  Future<void> _fetchData() async {
-    setLoadingState(true);
-    // ipAddress = await LocationService.instance.getIpAddress();
-    //await LocationService.instance.getUserDetails();
-
-    setLoadingState(false);
-    setState(() {});
-    // await setData();
-  }
-
-  // Future setData() async {
-  //   date = await UserService.instance.addUserInformation(user);
-
-  //   setState(() {});
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -128,15 +108,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-
-        // Positioned(
-        //     top: MediaQuery.of(context).size.height / 5,
-        //     left: MediaQuery.of(context).size.width / 3.7,
-        //     child: qrImageUI()),
-        // Positioned(
-        //     top: MediaQuery.of(context).size.height / 2,
-        //     left: MediaQuery.of(context).size.width / 3.5,
-        //     child: generatedNum())
       ],
     );
   }
@@ -170,9 +141,6 @@ class _HomeScreenState extends State<HomeScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // SizedBox(
-          //   height: MediaQuery.of(context).size.height / 1.7,
-          // ),
           Container(
             padding: EdgeInsets.all(MediaQuery.of(context).size.width / 10),
             child: Column(
@@ -180,65 +148,23 @@ class _HomeScreenState extends State<HomeScreen> {
                 SingleChildScrollView(
                   child: Column(children: [
                     InkWell(
+                      onTap: navigateToLoginDetails,
                       child: categories('Electronics'),
-                      onTap: navigateToLoginDetails,
                     ),
                     InkWell(
+                      onTap: navigateToLoginDetails,
                       child: categories('Sports'),
-                      onTap: navigateToLoginDetails,
                     ),
                     InkWell(
+                      onTap: navigateToLoginDetails,
                       child: categories('Fashion'),
-                      onTap: navigateToLoginDetails,
                     ),
                     InkWell(
-                      child: categories('Grocery'),
                       onTap: navigateToLoginDetails,
+                      child: categories('Grocery'),
                     ),
                   ]),
                 ),
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: ButtonWidget(
-                //     text:
-                //         'Last login at Today, ${DateFormat('hh:mm a').format(DateTime.now())}',
-                //     onClicked: navigateToLoginDetails,
-                //     isSecondary: true,
-                //   ),
-                // ),
-
-                // Padding(
-                //   padding: const EdgeInsets.all(8.0),
-                //   child: ButtonWidget(
-                //       text: 'SAVE',
-                //       onClicked: () async {
-                //         Uint8List qrImg =
-                //             await toQrImageData(randomNumber.toString());
-                //         final tempDir =
-                //             await getApplicationDocumentsDirectory();
-                //         File file =
-                //             await File('${tempDir.path}/image.png').create();
-                //         file.writeAsBytesSync(qrImg, flush: true);
-
-                //         Reference ref = FirebaseStorage.instance
-                //             .ref()
-                //             .child("/ExampleApp/image_${DateTime.now()}.jpg");
-
-                //         UploadTask uploadTask = ref.putFile(file);
-
-                //         await uploadTask.then((res) async {
-                //           String imageURL = await res.ref.getDownloadURL();
-
-                //           await UserService.instance.updateUserInformation(
-                //             AppConstants.userModel.uuid,
-                //             AppConstants.userModel.mobileNumber,
-                //             imageURL,
-                //             randomNumber,
-                //             date!,
-                //           );
-                //         });
-                //       }),
-                // ),
               ],
             ),
           ),

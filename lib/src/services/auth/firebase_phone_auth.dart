@@ -3,7 +3,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:shopping_app/src/services/model/phone_auth_listener.dart';
 import 'package:shopping_app/src/services/model/user_model.dart';
-import 'package:shopping_app/src/services/user/user.dart';
 
 class FirebasePhoneAuth {
   PhoneAuthListener phoneAuthListener;

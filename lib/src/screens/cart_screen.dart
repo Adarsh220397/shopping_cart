@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:shopping_app/src/screens/login_details_screen.dart';
 import 'package:shopping_app/src/screens/success_screen.dart';
 import 'package:shopping_app/src/services/database/database.dart';
 import 'package:shopping_app/src/services/model/user_details.dart';
@@ -19,6 +18,7 @@ class _CartScreenState extends State<CartScreen> {
   late ThemeData themeData;
   bool isLoading = false;
   List<UserDetailsModel> selectedList = [];
+  List<UserDetailsModel> list = [];
   num total = 0;
   @override
   void initState() {
@@ -36,13 +36,7 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   fetchData() async {
-    List<UserDetailsModel> list = [];
     list = await DataBase.instance.getData();
-
-    for (UserDetailsModel i in list) {
-      print(i.id);
-      print(i.price);
-    }
   }
 
   @override
@@ -54,7 +48,7 @@ class _CartScreenState extends State<CartScreen> {
           title: const Text('Cart'),
           backgroundColor: const Color.fromARGB(255, 1, 16, 39),
         ),
-        //  key: _scaffoldKey,
+    
         body: SafeArea(
           child: KeyboardDismissOnTap(
             child: ProgressWidget(
@@ -68,33 +62,35 @@ class _CartScreenState extends State<CartScreen> {
 
   Widget cartDetails() {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          for (UserDetailsModel user in selectedList)
-            Column(
-              children: [
-                itemCard(user),
-                const SizedBox(
-                  height: 5,
-                )
-              ],
+      child: Padding(
+        padding: EdgeInsets.all(MediaQuery.of(context).size.width / 10),
+        child: Column(
+          children: [
+            for (UserDetailsModel user in selectedList)
+              Column(
+                children: [
+                  itemCard(user),
+                  const SizedBox(
+                    height: 5,
+                  )
+                ],
+              ),
+            const SizedBox(
+              height: 30,
             ),
-          const SizedBox(
-            height: 30,
-          ),
-          Text('Total : ${'\u{20B9}'} $total',
-              style: themeData.textTheme.titleLarge!
-                  .copyWith(color: Colors.white)),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ButtonWidget(
-              text: 'CHECKOUT',
-              onClicked: navigateToSucessPage,
-              bFullContainerButton: true,
+            Text('Total : ${'\u{20B9}'} $total',
+                style: themeData.textTheme.titleLarge!
+                    .copyWith(color: Colors.white)),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ButtonWidget(
+                text: 'CHECKOUT',
+                onClicked: navigateToSucessPage,
+                bFullContainerButton: true,
+              ),
             ),
-          ),
-          //  ButtonWidget(text: 'CheckOut', onClicked: navigateToSucessPage)
-        ],
+          ],
+        ),
       ),
     );
   }

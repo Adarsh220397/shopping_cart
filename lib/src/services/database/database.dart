@@ -14,8 +14,6 @@ class DataBase {
         print(emp.toJson());
         UserDetailsModel i =
             await TransactionDetailDataBase.instance.create(emp);
-        print('-----------');
-        print(i);
       }
     } catch (e) {
       print('-------$e');
